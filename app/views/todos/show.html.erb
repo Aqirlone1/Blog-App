@@ -1,0 +1,8 @@
+<h1> todo </h1>
+<p> <strong> Todo: </strong><%= @todo.title %> </p>
+<p> <strong>  Description:</strong>  <%= @todo.description %> </p>
+<p> <strong>  Feedback:  </strong>   <%= @todo.feedback %> </p>
+
+  <%=link_to 'Edit' ,  edit_todo_path(@todo)%> 
+ <%= link_to "Back to todos", todos_path %> 
+  <%= button_to 'Delete', @todo, method: :delete,  data: {confirm: "Are you sure ?" } %> 
