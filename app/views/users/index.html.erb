@@ -1,0 +1,36 @@
+<h1>list of all users</h1>
+ <%if logged_in? %>
+ <h4> you are logged in as :<%= link_to  current_user.username, user_path(current_user) %> </h4>
+<button>
+<%= link_to  'Logout', logout_path, method: :delete %> </button>
+
+
+
+<%else%>
+<button>
+<%= link_to "Login", login_path %> </button>
+ <button><%= link_to "Signup", signup_path %></button>
+ 
+<%end%>
+ 
+  <% @users.each do |user| %>
+  <h2> <%= user.username%> </h2>
+  <p><%=pluralize(user.articles.count, "article")%></p>
+
+  <%=gravatar_for user, size: 200%>
+  <div>
+  <%if logged_in? && (user.username == current_user.username || current_user.admin?)%>
+  <p>
+   <%= button_to "Delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to "Edit profile", edit_user_path(user) %> 
+ 
+ 
+  <%end%>
+  <%= link_to "Show profile", user %> </p>
+  
+  </div>
+  
+  <%end%>
+ </div>
+ <%= will_paginate @users, :container => false %>
+ </div>

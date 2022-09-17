@@ -1,14 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<h1> Listing All Articles</h1>
+ <%if logged_in? %>
 
-<h1>Articles</h1>
+<h4> you are logged in as :<%= "(Admin)"if current_user.admin?  %>  <%= link_to  current_user.username, user_path(current_user) %> </h4>
+<button>
+<%= link_to  'Logout', logout_path, method: :delete %></button>
+<button><%= link_to "New article", new_article_path %></button>
 
-<div id="articles">
-  <% @articles.each do |article| %>
-    <%= render article %>
-    <p>
-      <%= link_to "Show this article", article %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New article", new_article_path %>
+
+<%else%>
+<button>
+<%= link_to "Login", login_path %> </button>
+ <button><%= link_to "Signup", signup_path %></button>
+
+<%end%>
+<h2><%= link_to "All Users", users_path %></h2>
+
+
+<%=render 'article'%>
+
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @articles %>
+    </div>
+    <%= will_paginate @articles, :container => false %>
+  </div>

@@ -1,0 +1,28 @@
+<h1 ><%= current_user.username %>'s profile </h1>
+
+
+<%=gravatar_for @user, size: 200%>
+<div>
+<%if logged_in? && @user.username == (current_user.username || current_user.admin?)%>
+
+<button>
+<%= link_to  'Logout', logout_path, method: :delete %>
+</button> 
+<button>
+<%= link_to "New article", new_article_path %>
+</button>
+<button>
+<%= link_to "Edit profile", edit_user_path(@user) %> 
+</button>
+<button> <%= link_to "Back to articles", articles_path %>
+</button>
+<%else%>
+<button> <%= link_to "Back to articles", articles_path %> </button>
+<%end%>
+
+</div>
+<h3 ><%= @user.username %>'s Articles </h3>
+<%= render 'articles/article' %>
+ </div>
+ <%= will_paginate @articles, :container => false %>
+ </div>

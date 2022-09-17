@@ -1,0 +1,19 @@
+<h1>login</h1>
+
+<%= form_with(scope: :session, url: login_path) do |form| %>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.email_field :email , placeholder: "Enter Email address" %>
+  </div>
+  <div>
+  <%= form.label :password, style: "display: block" %>
+  <%= form.password_field :password , placeholder: "Enter your Password" %>
+</div>
+<br>
+  <div>
+    <%= form.submit "Login" %>
+  </div>
+<% end %>
+<h3> if you do not have account created : </h3>
+<button><%= link_to "Signup ", signup_path %></button>

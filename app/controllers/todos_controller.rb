@@ -6,7 +6,7 @@ class TodosController < ApplicationController
     @todos = Todo.all
   end 
 
-  def show   
+  def show      
   end
 
  def new

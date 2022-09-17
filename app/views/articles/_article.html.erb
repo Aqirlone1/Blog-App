@@ -1,12 +1,45 @@
-<div id="<%= dom_id article %>">
+<p style="color: green"><%= notice %></p>
+
+<div id="articles">
+  <% @articles.each do |article| %>
+  <%if article.user%>
+  <p>
+ by : <%= link_to article.user.username, user_path(article.user) %> </p>
+
+<%end%> 
+  <div id="<%= dom_id article %>">
   <p>
     <strong>Title:</strong>
     <%= article.title %>
   </p>
 
   <p>
-    <strong>Descrepyion:</strong>
-    <%= article.Descrepyion %>
+    <strong>description:</strong>
+    <%= article.description %>
   </p>
 
 </div>
+
+<% if  logged_in? && (article.user == current_user || current_user.admin?) %>
+
+<%= button_to "Delete",  article, method: :delete%>  
+<button> <%= link_to "Edit",  edit_article_path(article) %> </button>
+<button> <%= link_to "View", article %> </button> 
+
+<%else%>
+ <button>
+   <%= link_to "View", article %>
+ </button>
+
+<%end%>
+   
+   
+   
+    
+</div>
+
+ <% end %>
+
+
+
+
