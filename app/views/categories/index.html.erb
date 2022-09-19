@@ -1,0 +1,10 @@
+<h1> index </h1>
+<p style="color: green"><%= notice %></p>
+<% @categories.each do |category| %>
+<p>
+  <strong>Name:</strong>
+  <%= category.name%>
+  <%= link_to "View", category %>
+</p>
+<%end%>
+ <%= link_to "Back to Articles", articles_path %>

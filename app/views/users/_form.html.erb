@@ -1,5 +1,6 @@
-<%= form_with(model: user) do |form| %>
 <%= render 'shared/errors' , obj: @user %>
+
+<%= form_with(model: user) do |form| %>
 
   <div>
     <%= form.label :username, style: "display: block" %>

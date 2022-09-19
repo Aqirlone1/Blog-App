@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'category/new'
-  get 'category/index'
-  get 'category/show'
   root to: 'page#index'
   resources :articles
   resources :todos
